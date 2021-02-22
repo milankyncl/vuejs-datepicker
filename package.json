@@ -30,6 +30,7 @@
     "serve": "rollup -c scripts/serve.js --watch",
     "test": "TZ=UTC jest --config test/unit/jest.conf.js --coverage",
     "lint": "eslint --ext .js,.vue src test/unit/specs",
+    "lintfix": "eslint --fix --ext .js,.vue src test/unit/specs",
     "prepublishOnly": "npm run build"
   },
   "pre-commit": [
