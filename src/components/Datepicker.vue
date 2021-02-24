@@ -68,6 +68,7 @@
       :translation="translation"
       :isRtl="isRtl"
       :use-utc="useUtc"
+      :monthCellContent="monthCellContent"
       @selectMonth="selectMonth"
       @showYearCalendar="showYearCalendar"
       @changedYear="setPageDate">
@@ -87,6 +88,7 @@
       :translation="translation"
       :isRtl="isRtl"
       :use-utc="useUtc"
+      :yearsPerPage="yearsPerPage"
       @selectYear="selectYear"
       @changedDecade="setPageDate">
       <slot name="beforeCalendarHeader" slot="beforeCalendarHeader"></slot>
@@ -126,6 +128,7 @@ export default {
       validator: val => utils.validateDateInput(val)
     },
     dayCellContent: Function,
+    monthCellContent: Function,
     fullMonthName: Boolean,
     disabledDates: Object,
     highlighted: Object,
@@ -153,7 +156,8 @@ export default {
     maximumView: {
       type: String,
       default: 'year'
-    }
+    },
+    yearsPerPage: Number
   },
   data () {
     const startDate = this.openDate ? new Date(this.openDate) : new Date()

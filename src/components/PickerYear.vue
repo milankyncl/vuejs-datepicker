@@ -35,7 +35,11 @@ export default {
     translation: Object,
     isRtl: Boolean,
     allowedToShowView: Function,
-    useUtc: Boolean
+    useUtc: Boolean,
+    yearsPerPage: {
+      type: Number,
+      default: 10
+    }
   },
   computed: {
     years () {
@@ -43,9 +47,9 @@ export default {
       let years = []
       // set up a new date object to the beginning of the current 'page'7
       let dObj = this.useUtc
-        ? new Date(Date.UTC(Math.floor(d.getUTCFullYear() / 10) * 10, d.getUTCMonth(), d.getUTCDate()))
-        : new Date(Math.floor(d.getFullYear() / 10) * 10, d.getMonth(), d.getDate(), d.getHours(), d.getMinutes())
-      for (let i = 0; i < 10; i++) {
+        ? new Date(Date.UTC(Math.floor(d.getUTCFullYear() / this.yearsPerPage) * this.yearsPerPage, d.getUTCMonth(), d.getUTCDate()))
+        : new Date(Math.floor(d.getFullYear() / this.yearsPerPage) * this.yearsPerPage, d.getMonth(), d.getDate(), d.getHours(), d.getMinutes())
+      for (let i = 0; i < this.yearsPerPage; i++) {
         years.push({
           year: this.utils.getFullYear(dObj),
           timestamp: dObj.getTime(),
@@ -60,8 +64,8 @@ export default {
      * @return {String}
      */
     getPageDecade () {
-      const decadeStart = Math.floor(this.utils.getFullYear(this.pageDate) / 10) * 10
-      const decadeEnd = decadeStart + 9
+      const decadeStart = Math.floor(this.utils.getFullYear(this.pageDate) / this.yearsPerPage) * this.yearsPerPage
+      const decadeEnd = decadeStart + (this.yearsPerPage - 1)
       const yearSuffix = this.translation.yearSuffix
       return `${decadeStart} - ${decadeEnd}${yearSuffix}`
     },
@@ -106,28 +110,28 @@ export default {
       if (this.isPreviousDecadeDisabled()) {
         return false
       }
-      this.changeYear(-10)
+      this.changeYear(this.yearsPerPage * -1)
     },
     isPreviousDecadeDisabled () {
       if (!this.disabledDates || !this.disabledDates.to) {
         return false
       }
       const disabledYear = this.utils.getFullYear(this.disabledDates.to)
-      const lastYearInPreviousPage = Math.floor(this.utils.getFullYear(this.pageDate) / 10) * 10 - 1
+      const lastYearInPreviousPage = Math.floor(this.utils.getFullYear(this.pageDate) / this.yearsPerPage) * this.yearsPerPage - 1
       return disabledYear > lastYearInPreviousPage
     },
     nextDecade () {
       if (this.isNextDecadeDisabled()) {
         return false
       }
-      this.changeYear(10)
+      this.changeYear(this.yearsPerPage)
     },
     isNextDecadeDisabled () {
       if (!this.disabledDates || !this.disabledDates.from) {
         return false
       }
       const disabledYear = this.utils.getFullYear(this.disabledDates.from)
-      const firstYearInNextPage = Math.ceil(this.utils.getFullYear(this.pageDate) / 10) * 10
+      const firstYearInNextPage = Math.ceil(this.utils.getFullYear(this.pageDate) / this.yearsPerPage) * this.yearsPerPage
       return disabledYear < firstYearInNextPage
     },
 
@@ -161,7 +165,7 @@ export default {
         }
       }
 
-      if (typeof this.disabledDates.customPredictor === 'function' && this.disabledDates.customPredictor(date)) {
+      if (typeof this.disabledDates.customPredictor === 'function' && this.disabledDates.customPredictor(date, 'year')) {
         disabledDates = true
       }
 
