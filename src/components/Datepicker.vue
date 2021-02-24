@@ -68,6 +68,7 @@
       :translation="translation"
       :isRtl="isRtl"
       :use-utc="useUtc"
+      :monthCellContent="monthCellContent"
       @selectMonth="selectMonth"
       @showYearCalendar="showYearCalendar"
       @changedYear="setPageDate">
@@ -126,6 +127,7 @@ export default {
       validator: val => utils.validateDateInput(val)
     },
     dayCellContent: Function,
+    monthCellContent: Function,
     fullMonthName: Boolean,
     disabledDates: Object,
     highlighted: Object,
