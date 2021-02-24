@@ -16,7 +16,8 @@
       v-for="month in months"
       :key="month.timestamp"
       :class="{'selected': month.isSelected, 'disabled': month.isDisabled}"
-      @click.stop="selectMonth(month)">{{ month.month }}</span>
+      v-html="monthCellContent(month, translation, utils)"
+      @click.stop="selectMonth(month)"></span>
   </div>
 </template>
 <script>
@@ -33,7 +34,11 @@ export default {
     translation: Object,
     isRtl: Boolean,
     allowedToShowView: Function,
-    useUtc: Boolean
+    useUtc: Boolean,
+    monthCellContent: {
+      type: Function,
+      default: (month, translation, utils) => utils.getMonthName(month.month, translation.months)
+    }
   },
   data () {
     const constructedDateUtils = makeDateUtils(this.useUtc)
@@ -51,7 +56,7 @@ export default {
         : new Date(d.getFullYear(), 0, d.getDate(), d.getHours(), d.getMinutes())
       for (let i = 0; i < 12; i++) {
         months.push({
-          month: this.utils.getMonthName(i, this.translation.months),
+          month: i,
           timestamp: dObj.getTime(),
           isSelected: this.isSelectedMonth(dObj),
           isDisabled: this.isDisabledMonth(dObj)
