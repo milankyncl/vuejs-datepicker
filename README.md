@@ -233,6 +233,30 @@ var state = {
       if(date.getDate() % 5 == 0){
         return true
       }
+    },
+    // the picker type is passed as a second argument, so you can apply
+    // different logic for each picker
+    customPredictor: function(date, picker) {
+      switch(picker){
+        case 'day': 
+          // disables the date if it is a multiple of 3
+          if (date.getDate() % 3 === 0) {
+            return true
+          }
+        break;
+        case 'month':
+          // disables the month if it is a multiple of 3
+          if (date.getMonth() % 3 === 0 ){
+            return true
+          }
+        break;
+        case 'year':
+          // disables the year if it is a multiple of 3
+          if (date.getFullYear() % 3 === 0 ){
+            return true
+          }
+        break;
+      }
     }
   }
 }

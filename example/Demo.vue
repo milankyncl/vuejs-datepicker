@@ -97,9 +97,25 @@
         <pre>
           disabledDates: {
             customPredictor: function (date) {
-              // disables every day of a month which is a multiple of 3
-              if (date.getDate() % 3 === 0) {
-                return true
+              switch(picker){
+                // disables every day of a month which is a multiple of 3
+                case 'day': 
+                  if (date.getDate() % 3 === 0) {
+                    return true
+                  }
+                break;
+                // disables every month which is a multiple of 3
+                case 'month':
+                  if (date.getMonth() %3 === 0 ){
+                    return true
+                  }
+                break;
+                // disables every year which is a multiple of 3
+                case 'year':
+                  if (date.getFullYear() %3 === 0 ){
+                    return true
+                  }
+                break;
               }
             }
           }
@@ -269,9 +285,23 @@ export default {
       disabledDates: {},
       openDate: null,
       disabledFn: {
-        customPredictor (date) {
-          if (date.getDate() % 3 === 0) {
-            return true
+        customPredictor (date, picker) {
+          switch(picker){
+            case 'day': 
+              if (date.getDate() % 3 === 0) {
+                return true
+              }
+            break;
+            case 'month':
+              if (date.getMonth() % 3 === 0 ){
+                return true
+              }
+            break;
+            case 'year':
+              if (date.getFullYear() % 3 === 0 ){
+                return true
+              }
+            break;
           }
         }
       },
