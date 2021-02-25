@@ -11,9 +11,9 @@
 
     <div class="example">
       <h3>Display other months days</h3>
-      <datepicker :displayOtherMonthDates="true" placeholder="Select Date" />
+      <datepicker :display-other-month-dates="true" placeholder="Select Date" />
       <code>
-          &lt;datepicker placeholder="Select Date"&gt;&lt;/datepicker&gt;
+          &lt;datepicker :display-other-month-dates="true" placeholder="Select Date"&gt;&lt;/datepicker&gt;
       </code>
     </div>
 
