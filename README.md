@@ -148,6 +148,7 @@ Inline always open version
 | minimum-view                  | String          | 'day'       | If set, lower-level views won't show       |
 | maximum-view                  | String          | 'year'      | If set, higher-level views won't show      |
 | years-per-page                | Number          | 10          | Number of years in a page                  |
+| display-other-month-dates     | Boolean         | false       | show other months dates on day picker      |
 
 
 ## Events
