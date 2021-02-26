@@ -20,8 +20,7 @@ NB. Vue 1.x was supported up to version v0.9.9. If you want to use this componen
 
 ## Demo
 
-To view a demo online:
-https://codesandbox.io/s/mpklq49wp
+To view a demo online: https://jony.dev/vuejs-datepicker/demo.html
 
 To view demo examples locally clone the repo and run `npm install && npm run serve`
 
