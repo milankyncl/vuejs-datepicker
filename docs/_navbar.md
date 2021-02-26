@@ -1,3 +1,3 @@
-- [Demo](#demo)
+- [Examples](demo.html ':ignore')
 - [Issues](https://github.com/jonyhayama/vuejs-datepicker/issues)
 - [Releases](https://github.com/jonyhayama/vuejs-datepicker/releases)
