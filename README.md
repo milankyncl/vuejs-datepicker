@@ -170,7 +170,7 @@ These events are emitted on actions in the datepicker
 
 ## Date formatting
 
-#### String formatter
+### String formatter
 
 NB. This is not very robust at all - use at your own risk! Needs a better implementation.
 
@@ -187,7 +187,7 @@ NB. This is not very robust at all - use at your own risk! Needs a better implem
 | yy    | two digit year         | 16          |
 | yyyy  | four digit year        | 2016        |
 
-#### Function formatter
+### Function formatter
 
 Delegates date formatting to provided function.
 Function will be called with date and it has to return formated date as a string.
@@ -306,7 +306,7 @@ var state = {
 
 Slots will help you customize content.  .
 
-#### beforeCalendarHeader
+### beforeCalendarHeader
 
 Sometimes you need to show custom content before the calendar header. For such cases you can use the named slot `beforeCalendarHeader`.
 
@@ -320,7 +320,7 @@ to show some custom text:
 </datepicker>
 ```
 
-#### afterDateInput
+### afterDateInput
 
 To implement some custom styling (for instance to add an animated placeholder) on DateInput, you might need to add elements as DateInput siblings. Slot named
 `afterDateInput` allows you to do that:
