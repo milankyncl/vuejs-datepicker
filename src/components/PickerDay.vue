@@ -16,11 +16,11 @@
       <span class="cell day-header" v-for="d in daysOfWeek" :key="d.timestamp">{{ d }}</span>
       <template v-if="prevMonthDays.length > 0">
         <template v-if="displayOtherMonthDates">
-          <span 
+          <span
             class="cell day other-month"
-            v-for="day in prevMonthDays" 
+            v-for="day in prevMonthDays"
             :class="dayClasses(day)"
-            :key="day.timestamp" 
+            :key="day.timestamp"
             v-html="dayCellContent(day)"
             @click="selectDate(day)"></span>
         </template>
@@ -28,7 +28,7 @@
           <span class="cell day blank" v-for="d in prevMonthDays" :key="d.timestamp"></span>
         </template>
       </template><!--
-      --><span 
+      --><span
           class="cell day"
           v-for="day in days"
           :key="day.timestamp"
@@ -36,11 +36,11 @@
           v-html="dayCellContent(day)"
           @click="selectDate(day)"></span><!--
       --><template v-if="displayOtherMonthDates && nextMonthDays.length > 0">
-        <span 
+        <span
           class="cell day other-month"
-          v-for="day in nextMonthDays" 
+          v-for="day in nextMonthDays"
           :class="dayClasses(day)"
-          :key="day.timestamp" 
+          :key="day.timestamp"
           v-html="dayCellContent(day)"
           @click="selectDate(day)"></span>
       </template>
@@ -152,10 +152,7 @@ export default {
         : new Date(d.getFullYear(), d.getMonth() + 1, 0, d.getHours(), d.getMinutes())
 
       // number of blank days to insert after
-      let numDays = 7 - (this.utils.getDay(dObj) + 1)
-      if (this.mondayFirst) {
-        numDays = this.utils.getDay(dObj) > 0 ? (this.utils.getDay(dObj) + 1) : 0
-      }
+      let numDays = this.utils.getDay(dObj) > 0 ? 7 - (this.utils.getDay(dObj) - (this.mondayFirst ? 0 : 1)) : 0
       // return array of days to show after
       let arr = []
       for (var i = 1; i <= numDays; i++) {
