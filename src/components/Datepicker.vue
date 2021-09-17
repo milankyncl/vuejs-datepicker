@@ -48,6 +48,7 @@
       :mondayFirst="mondayFirst"
       :dayCellContent="dayCellContent"
       :use-utc="useUtc"
+      :display-other-month-dates="displayOtherMonthDates"
       @changedMonth="handleChangedMonthFromDayPicker"
       @selectDate="selectDate"
       @showMonthCalendar="showMonthCalendar"
@@ -68,6 +69,7 @@
       :translation="translation"
       :isRtl="isRtl"
       :use-utc="useUtc"
+      :monthCellContent="monthCellContent"
       @selectMonth="selectMonth"
       @showYearCalendar="showYearCalendar"
       @changedYear="setPageDate">
@@ -87,6 +89,7 @@
       :translation="translation"
       :isRtl="isRtl"
       :use-utc="useUtc"
+      :yearsPerPage="yearsPerPage"
       @selectYear="selectYear"
       @changedDecade="setPageDate">
       <slot name="beforeCalendarHeader" slot="beforeCalendarHeader"></slot>
@@ -108,6 +111,7 @@ export default {
     PickerYear
   },
   props: {
+    displayOtherMonthDates: Boolean,
     value: {
       validator: val => utils.validateDateInput(val)
     },
@@ -126,6 +130,7 @@ export default {
       validator: val => utils.validateDateInput(val)
     },
     dayCellContent: Function,
+    monthCellContent: Function,
     fullMonthName: Boolean,
     disabledDates: Object,
     highlighted: Object,
@@ -153,7 +158,8 @@ export default {
     maximumView: {
       type: String,
       default: 'year'
-    }
+    },
+    yearsPerPage: Number
   },
   data () {
     const startDate = this.openDate ? new Date(this.openDate) : new Date()
